@@ -15,6 +15,7 @@ class ProjectsController {
         const project= await knex('proyectos').where({id:id}).select('*');
         res.json(project)
     }
+    
     public async createProject(req:Request,res:Response){
         const {nombre,objetivos,descripcion,compromiso_social,costo_minimo,
                costo_optimo,videos,fecha,ubicacion} = req.body;
