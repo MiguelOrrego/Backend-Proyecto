@@ -13,4 +13,6 @@ const conexion = knex({
 });
 
 
+
+
 module.exports=conexion;

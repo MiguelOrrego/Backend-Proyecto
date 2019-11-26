@@ -45,18 +45,32 @@ class ProjectsController {
             res.json({ message: 'Project create' });
         });
     }
-    deleteProject(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield knex('proyectos').where('id', id).del();
-            res.json({ message: 'Project delete' });
-        });
-    }
     updateProject(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield knex('proyectos').where('id', '=', id).update(req.body);
+            console.log(req.file.path);
+            const { nombre, objetivos, descripcion, compromiso_social, costo_minimo, costo_optimo, videos, ubicacion } = req.body;
+            const updateProject = {
+                nombre: nombre,
+                objetivos: objetivos,
+                descripcion: descripcion,
+                compromiso_social: compromiso_social,
+                costo_minimo: costo_minimo,
+                costo_optimo: costo_optimo,
+                videos: videos,
+                image: req.file.path,
+                ubicacion: ubicacion
+            };
+            console.log(updateProject);
+            yield knex('proyectos').where({ id: id }).update(updateProject);
             res.json({ message: 'Project update' });
+        });
+    }
+    deleteProject(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const project = yield knex('proyectos').where('id', id).del();
+            res.json({ message: 'Project delete' });
         });
     }
 }

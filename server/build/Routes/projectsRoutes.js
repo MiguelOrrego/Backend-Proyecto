@@ -16,7 +16,7 @@ class ProjectsRouter {
         this.routerProjects.get('/:id', projectsController_1.projectsController.getOneProject);
         this.routerProjects.post('/', muter_1.default.single('image'), projectsController_1.projectsController.createProject);
         this.routerProjects.delete('/:id', projectsController_1.projectsController.deleteProject);
-        this.routerProjects.put('/:id', projectsController_1.projectsController.updateProject);
+        this.routerProjects.put('/:id', muter_1.default.single('image'), projectsController_1.projectsController.updateProject);
     }
 }
 const router = new ProjectsRouter();
